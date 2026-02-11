@@ -3,9 +3,18 @@
 
 int main()
 {
-    float a = 5.0f;
-    int c;
+    int    a = 42;
+int* ptr = &a;
 
-    c = static_cast<int>(a);
-    std::cout << std::fixed << a<< std::endl;
+struct Chien { int age; };
+struct Avion { float vitesse; };
+
+Chien monChien;
+monChien.age = 5;
+
+
+Avion* monFauxAvion = reinterpret_cast<Avion*>(&monChien);
+
+
+std::cout << "Vitesse de l'avion-chien : " << monFauxAvion->vitesse << std::endl;
 }
