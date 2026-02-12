@@ -1,20 +1,36 @@
 #include <iostream>
 #include <cstdlib>
 
-int main()
-{
-    int    a = 42;
-int* ptr = &a;
+#include <iostream>
 
-struct Chien { int age; };
-struct Avion { float vitesse; };
+struct Animal {
+    virtual ~Animal() {} // IMPORTANT pour dynamic_cast
+};
 
-Chien monChien;
-monChien.age = 5;
+struct Chien : Animal {
+    public:
+    std::string namee;
+    void aboyer() {
+        std::cout << "Wouf !" << std::endl;
+    }
+    void name()
+    {
+        std::cout << namee << std::endl;
+    }
+};
 
+struct Chat : Animal {
+    void miauler() {
+        std::cout << "Miaou !" << std::endl;
+    }
+};
 
-Avion* monFauxAvion = reinterpret_cast<Avion*>(&monChien);
+int main() {
+    Animal* a = new Chat();   // C'est un Chat en réalité
 
+    Chien* c = dynamic_cast<Chien*>(a); // ❌ On ment au compilateur
 
-std::cout << "Vitesse de l'avion-chien : " << monFauxAvion->vitesse << std::endl;
+    c->name(); // 💥 DANGER
+
+    delete a;
 }
