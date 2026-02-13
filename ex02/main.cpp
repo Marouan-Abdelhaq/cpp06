@@ -77,5 +77,5 @@ int main()
     Base *ptr = generate();
 
     identify(ptr);
-    
+
 }

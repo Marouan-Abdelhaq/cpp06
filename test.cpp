@@ -3,34 +3,41 @@
 
 #include <iostream>
 
-struct Animal {
-    virtual ~Animal() {} // IMPORTANT pour dynamic_cast
+class A {
+    public:
+    virtual ~A() {}
 };
 
-struct Chien : Animal {
+class B : public A {
     public:
-    std::string namee;
-    void aboyer() {
-        std::cout << "Wouf !" << std::endl;
+
+    void print() {
+        std::cout << "B" << std::endl;
     }
+    void name(){
+        std::cout << "s";
+    }
+};
+
+class C : public A {
+    public:
+    
     void name()
     {
-        std::cout << namee << std::endl;
+        std::cout << "hhhhhhhhhhhh" << std::endl;
+    }
+    void print() {
+        std::cout << "C" << std::endl;
     }
 };
 
-struct Chat : Animal {
-    void miauler() {
-        std::cout << "Miaou !" << std::endl;
-    }
-};
 
 int main() {
-    Animal* a = new Chat();   // C'est un Chat en réalité
+    // A* a = new B;
 
-    Chien* c = dynamic_cast<Chien*>(a); // ❌ On ment au compilateur
-
-    c->name(); // 💥 DANGER
-
-    delete a;
+    C* c;
+    std::cout << c << std::endl;
+    c->print();
+    c->name();
+    // delete a;    
 }

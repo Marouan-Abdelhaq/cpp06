@@ -1,4 +1,4 @@
-Name = serialization
+Name = identify
 
 SRC = Base.cpp main.cpp A.cpp B.cpp C.cpp
 
